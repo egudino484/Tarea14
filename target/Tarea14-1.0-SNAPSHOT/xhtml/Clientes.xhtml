@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>TODO supply a title</title>
+    </h:head>
+    <body>
+        <div>
+            <h:form id="frmCliente" style="background-color:aqua ">
+                <p:panel header="Ingreso de Clientes" style="">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel>IdCliente</p:outputLabel>
+                        <p:inputText value="#{clienteView.txtid}">  </p:inputText>
+                        <p:outputLabel>Nombre</p:outputLabel>
+                        <p:inputText value="#{clienteView.txtNombre}">  </p:inputText>
+                        <p:outputLabel>Apellido</p:outputLabel>
+                        <p:inputText value="#{clienteView.txtAapellido}"></p:inputText>
+                        <p:outputLabel>Direccion</p:outputLabel>
+                        <p:inputText value="#{clienteView.txtDieccion}"></p:inputText>
+                        <p:outputLabel>Telefono</p:outputLabel>
+                        <p:inputText value="#{clienteView.txtFono}"></p:inputText>
+                        <p:outputLabel>Cedula/RUC</p:outputLabel>
+                        <p:inputText value="#{clienteView.txtCi}"></p:inputText>
+                         </h:panelGrid>
+                    
+      </p:panel>
+                <p:panel header="listar" style="">
+ 
+                    <h:panelGrid>
+                        <p:dataTable id="listaCliente" value="#{clienteView.listarcliente()}"  var="dtCliente" widgetVar="listaCliente" rows="25" paginatorPosition="bottom" paginator="true" scrollable="true" scrollHeight="200">
+                            <p:column headerText="Id">
+                                <h:outputText id="txtid" value="#{dtCliente.idCliente}" />
+                            </p:column>
+
+                            <p:column headerText="Nombre">
+                                <h:outputText id="txtNombre" value="#{dtCliente.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Apellido">
+                                <h:outputText id="txtApellido" value="#{dtCliente.apellido}" />
+                            </p:column>
+
+                            <p:column headerText="Dirección">
+                                <h:outputText id="txtDireccion" value="#{dtCliente.direccion}" />
+                            </p:column>      
+
+                             <p:column headerText="Telefono">
+                                 <h:outputText id="txtFono" value="#{dtCliente.telefono}" />
+                            </p:column> 
+                            
+                             <p:column headerText="Cedula">
+                                 <h:outputText id="txtCi" value="#{dtCliente.ci}" />
+                            </p:column> 
+                        </p:dataTable> 
+                    
+                    </h:panelGrid>
+                 
+                    
+                    
+                    
+                    
+                </p:panel>
+                     
+                
+                <p:commandButton value="Guardar" action="#{clienteView.insertarCliente()}" ></p:commandButton>
+                    <p:commandButton value="Eliminar" action="#{clienteView.eliminarCliente()}" ></p:commandButton>
+            </h:form>
+        </div>
+    </body>
+</html>

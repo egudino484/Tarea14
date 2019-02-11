@@ -1,0 +1,9 @@
+com\mycompany\tarea14\modelo\DAO\IGenericDAO.class
+com\mycompany\tarea14\modelo\entidades\Cliente_.class
+com\mycompany\tarea14\backingBeans\ClienteView.class
+com\mycompany\tarea14\controlador\IClienteControlador.class
+com\mycompany\tarea14\modelo\DAO\IClienteDAO.class
+com\mycompany\tarea14\controladorImpl\ClienteControladorImpl.class
+com\mycompany\tarea14\modelo\DAOImpl\ClienteDAOImpl.class
+com\mycompany\tarea14\modelo\DAOImpl\GenericDAO.class
+com\mycompany\tarea14\modelo\entidades\Cliente.class
