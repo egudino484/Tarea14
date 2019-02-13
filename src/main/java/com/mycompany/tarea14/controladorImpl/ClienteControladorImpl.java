@@ -16,30 +16,52 @@ import javax.persistence.Tuple;
  *
  * @author Oscar Alfonso
  */
-public class ClienteControladorImpl implements IClienteControlador{
-    
+public class ClienteControladorImpl implements IClienteControlador {
+
     @Override
-    public void insertarCliente(Cliente cliente){
+    public void insertarCliente(Cliente cliente) {
         try {
-        IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
-        sql.insertarCliente(cliente);
+            IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
+            sql.insertarCliente(cliente);
         } catch (Exception e) {
             System.err.println("ERROR:" + e);
         }
 
     }
-    
+
     public List<Cliente> listarCliente() {
         try {
-          IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
-          return sql.listarCliente();
+            IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
+            return sql.listarCliente();
         } catch (Exception e) {
             System.err.println("ERROR:" + e);
             return null;
         }
     }
+
+    @Override
+    public Cliente buscarPorId(int id) {
+        try {
+            IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
+            return sql.buscarPorId(id);
+        } catch (Exception e) {
+            System.err.println("ERROR:" + e);
+            return null;
+        }
+    }
+
+    @Override
+    public boolean eliminarCliente(int id) throws Exception {
+        try {
+            IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
+            return sql.eliminarCliente(id);
+        } catch (Exception e) {
+            System.err.println("ERROR:" + e);
+            return false;
+        }
+    }
 }
-    
+
 //     public List<Cliente> listarClienteCQ() {
 //          try {
 //            ClienteDAOImpl sql = new ClienteDAOImpl(Cliente.class);

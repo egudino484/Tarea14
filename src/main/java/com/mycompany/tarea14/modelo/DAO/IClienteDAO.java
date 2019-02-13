@@ -13,12 +13,18 @@ import java.util.List;
  * @author Oscar Alfonso
  */
 public interface IClienteDAO {
-     public void insertarCliente(Cliente cliente);
-        public List<Cliente> listarCliente();
+
+    public void insertarCliente(Cliente cliente);
+
+    public List<Cliente> listarCliente();
 //
-//    public boolean actualizarCliente(Cliente cliente);
-//
-//    public boolean eliminarCliente(int id);
+
+    public boolean actualizarCliente(Cliente cliente);
+
+    public boolean eliminarCliente(int id);
+
+    public Cliente buscarPorId(int id);
+
 //
 //    public List<Cliente> getClientes();
 //
@@ -27,5 +33,4 @@ public interface IClienteDAO {
 //    public Cliente getClienteCI(String ci);
 //    
 //    public List<Cliente> listarCliente();
-    
 }

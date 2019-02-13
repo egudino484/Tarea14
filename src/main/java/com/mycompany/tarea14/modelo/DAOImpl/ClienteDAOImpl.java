@@ -13,29 +13,38 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.primefaces.component.log.Log;
 
 /**
  *
  * @author Oscar Alfonso
  */
-public class ClienteDAOImpl extends GenericDAO<Cliente> implements IClienteDAO{
-    
-     public ClienteDAOImpl() {
+public class ClienteDAOImpl extends GenericDAO<Cliente> implements IClienteDAO {
+
+    public ClienteDAOImpl() {
     }
-    
-    public ClienteDAOImpl (Class<Cliente> entiClass){
-        super (entiClass);
+
+    public ClienteDAOImpl(Class<Cliente> entiClass) {
+        super(entiClass);
     }
-    
+
     @Override
-    public void insertarCliente (Cliente cliente){
+    public void insertarCliente(Cliente cliente) {
         this.beginTransaction();
         this.create(cliente);
         this.commit();
-        this.closeTransaction();       
+        this.closeTransaction();
     }
-   
-    
+
+    @Override
+    public Cliente buscarPorId(int id) {
+        this.beginTransaction();
+        Cliente artist1 = this.read(id);
+
+        this.closeTransaction();
+        return artist1;
+
+    }
 //    public List<Cliente> listarCliente(){
 //        this.beginTransaction();
 //        List<Cliente> lista = this.findAll();
@@ -43,20 +52,53 @@ public class ClienteDAOImpl extends GenericDAO<Cliente> implements IClienteDAO{
 //        return lista;        
 //    }
 //    
+
     @Override
     public List<Cliente> listarCliente() {
-        TypedQuery<Cliente> lista;
+        List<Cliente> lista;
         try {
-            lista = entityManager.createQuery("SELECT c FROM Cliente c",Cliente.class);
-            return lista.getResultList();
+            lista = entityManager.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+            return lista;
         } catch (Exception e) {
             throw e;
         }
     }
 
+    @Override
+    public boolean actualizarCliente(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean eliminarCliente(int id) {
+        this.beginTransaction();
+        Cliente artist1 = entityManager.find(Cliente.class, id);
+
+        this.delete(artist1);
+        this.commit();
+        this.closeTransaction();
+        /* try {
+            Cliente obj = entityManager.getReference(Cliente.class, id);
+Cliente same = entityManager.find(1); //managed same
+            this.beginTransaction();
+            this.delete(obj);
+            this.commit();
+            this.closeTransaction();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }*/
+ /*  if (artist != null) {
+            entityManager.getTransaction().begin();
+            entityManager.remove(artist);
+            entityManager.getTransaction().commit();
+        }*/
+        System.out.println("se elimino correctamente!");
+        return true;
+    }
+
 }
 
-    
 //    public List<Cliente> listarClienteCQ() {
 //        CriteriaBuilder cb= this.entityManager.getCriteriaBuilder();
 //        CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class) ;
@@ -85,10 +127,6 @@ public class ClienteDAOImpl extends GenericDAO<Cliente> implements IClienteDAO{
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
 //
-//    @Override
-//    public boolean eliminarCliente(int id) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
 //
 //    @Override
 //    public List<Cliente> getClientes() {

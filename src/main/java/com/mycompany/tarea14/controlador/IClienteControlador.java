@@ -13,16 +13,18 @@ import java.util.List;
  * @author Oscar Alfonso
  */
 public interface IClienteControlador {
-    
+
     public void insertarCliente(Cliente cliente);
-     
-     public List<Cliente> listarCliente();
+
+    public List<Cliente> listarCliente();
+
+    public Cliente buscarPorId(int id);
 
 //    public void insertarCliente(Cliente cliente) throws Exception ;
 //
 //    public boolean actualizarCliente(Cliente cliente)throws Exception;
 //
-  public boolean eliminarCliente(int id)throws Exception;
+    public boolean eliminarCliente(int id) throws Exception;
 //
 //    public List<Cliente> getClientes()throws Exception;
 //
@@ -30,4 +32,3 @@ public interface IClienteControlador {
 //
 //    public Cliente getClienteCI(String ci)throws Exception;
 }
-

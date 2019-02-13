@@ -61,8 +61,17 @@ and open the template in the editor.
                             <p:column headerText="Cedula">
                                 <h:outputText id="txtCi" value="#{dtCliente.ci}" />
                             </p:column> 
-                            <p:column headerText="Cedula">
-                                <p:commandButton value="Guardar" action="#{clienteView.eliminarCliente()}" ></p:commandButton>                            </p:column> 
+                            <p:column headerText="eliminar">
+                                <p:commandButton value="Eliminar" action="#{clienteView.eliminarCliente(dtCliente.idCliente)}" ></p:commandButton>                            
+                            </p:column> 
+                            <p:column style="width:32px">  
+                                <p:commandButton update=":dlgForm"   action="#{clienteView.seleccionarCliente(dtCliente.idCliente)}" oncomplete="carDialog.show()"  immediate="true" 
+                                                 image="ui-icon ui-icon-search" >  
+                                   <!-- <f:setPropertyActionListener value="{dtCliente}"  
+                                                                 target="{clienteView.clienteSeleccionado}" />  -->
+                                </p:commandButton>  
+                            </p:column>  
+
                         </p:dataTable> 
 
                     </h:panelGrid>
@@ -77,26 +86,46 @@ and open the template in the editor.
                 <p:commandButton value="Guardar" action="#{clienteView.insertarCliente()}" ></p:commandButton>
                 <p:commandButton value="Eliminar" action="#{clienteView.eliminarCliente()}" ></p:commandButton>
             </h:form>
+            <hr/>
+            <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"  
+                      width="200" showEffect="explode" hideEffect="explode">  
+                <h:form id="dlgForm">
 
-            <hr>
-                <h:panelGrid columns="1" cellpadding="5">
-                    <p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />
 
-                    <p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();" />
+                    <h:panelGrid id="display" columns="2" cellpadding="4">  
 
-                    <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" /> 
-                </h:panelGrid>
-                <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
-                    <h:outputText value="Resistance to PrimeFaces is futile!" />
-                </p:dialog>
+                        <f:facet name="header">  HEADER                        </f:facet>  
 
-                <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
-                    <h:outputText value="This is a Modal Dialog." />
-                </p:dialog>   
+                        <h:outputText value="Model:" />  
+                        <h:inputText value="#{clienteView.clienteSeleccionado.nombre}" />  
 
-                <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
-                    <h:outputText value="This dialog has nice effects." />
-                </p:dialog>
-        </div>
-    </body>
+                        <h:outputText value="Year:" />  
+                        <h:inputText value="#{clienteView.clienteSeleccionado.apellido}" />  
+
+                    </h:panelGrid>  
+                     <!--update="tableForm:carTable"--> 
+                    <p:commandButton value="save" action="#{clienteView.insertarCliente()}" oncomplete="carDialog.hide()"></p:commandButton>
+            </h:form>
+        </p:dialog>  
+        <hr/>
+        <h:panelGrid columns="1" cellpadding="5">
+            <p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />
+
+            <p:commandButton value="Modal" type="button" onclick="PF('dlg2').show();" />
+
+            <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" /> 
+        </h:panelGrid>
+        <p:dialog header="Basic Dialog" widgetVar="dlg1" minHeight="40">
+            <h:outputText value="Resistance to PrimeFaces is futile!" />
+        </p:dialog>
+
+        <p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+            <h:outputText value="This is a Modal Dialog." />
+        </p:dialog>   
+
+        <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+            <h:outputText value="This dialog has nice effects." />
+        </p:dialog>
+    </div>
+</body>
 </html>

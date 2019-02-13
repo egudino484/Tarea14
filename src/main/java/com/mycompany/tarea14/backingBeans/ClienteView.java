@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -20,7 +21,8 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean //(name="Cli")
 @ViewScoped
-public class ClienteView implements Serializable{
+
+public class ClienteView implements Serializable {
 
     private int txtid;
     private String txtNombre;
@@ -29,67 +31,64 @@ public class ClienteView implements Serializable{
     private String txtFono;
     private String txtCi;
     private Cliente nuevoCliente;
+    private Cliente clienteSeleccionado;
     private IClienteControlador clienteControlador;
     private List<Cliente> listcliente;
-    
+
     public ClienteView() {
     }
-    
+
     @PostConstruct
-    public void init()
-    {
-       clienteControlador =new ClienteControladorImpl();
-        nuevoCliente= new Cliente(); 
-       clienteControlador.listarCliente();
-    
+    public void init() {
+        clienteControlador = new ClienteControladorImpl();
+        nuevoCliente = new Cliente();
+        clienteSeleccionado = new Cliente();
+        clienteControlador.listarCliente();
+
 //        System.err.println("Inicio se creo el BEAN");
 //        clienteControlador= new ClienteControladorImpl();
     }
 
-    public void insertarCliente() throws Exception
-    {
-       // para ingresar codID 
-       // nuevoCliente.setCi(Integer.ParseInt.(txtCi));
-       
-        
+    public void seleccionarCliente(int clienteSeleccion) {
+        System.out.println("id cliente:"+clienteSeleccion);
+        clienteSeleccionado =  clienteControlador.buscarPorId(clienteSeleccion);
+        System.err.println("termino de convertir: "+ clienteSeleccionado);
+    }
+
+    public void insertarCliente() throws Exception {
+        // para ingresar codID 
+        // nuevoCliente.setCi(Integer.ParseInt.(txtCi));
+
         //nuevoCliente= new Cliente();
-        
-     
-                
         nuevoCliente.setIdCliente(txtid);
         nuevoCliente.setNombre(txtNombre);
         nuevoCliente.setApellido(txtAapellido);
         nuevoCliente.setDireccion(txtDieccion);
         nuevoCliente.setTelefono(txtFono);
         nuevoCliente.setCi(txtCi);
-        System.err.println("Ya llego al servidor: "+nuevoCliente);
-        
+        System.err.println("Ya llego al servidor: " + nuevoCliente);
+
         clienteControlador.insertarCliente(nuevoCliente);
     }
-     public void eliminarCliente() throws Exception
-    {
-       // para ingresar codID 
-       // nuevoCliente.setCi(Integer.ParseInt.(txtCi));
-       
-        
+
+    public void eliminarCliente(int id) throws Exception {
+        // para ingresar codID 
+        // nuevoCliente.setCi(Integer.ParseInt.(txtCi));
+
         //nuevoCliente= new Cliente();
-        
-     
-                
-        nuevoCliente.setIdCliente(txtid);
-       
-        System.err.println("Ya llego al servidor: "+nuevoCliente);
-        
+        nuevoCliente.setIdCliente(id);
+
+        System.err.println("Ya llego al servidor para ser eliminado: " + nuevoCliente);
+
         clienteControlador.eliminarCliente(nuevoCliente.getIdCliente());
     }
-    
+
 //    public void eliminarCliente(){
 //         System.out.println("INGRESE DATOS A ELIMINAR");
 //    
 //    }
-
-    public List<Cliente>listarcliente(){
-    return listcliente = clienteControlador.listarCliente();
+    public List<Cliente> listarcliente() {
+        return listcliente = clienteControlador.listarCliente();
     }
 
     public int getTxtid() {
@@ -163,5 +162,13 @@ public class ClienteView implements Serializable{
     public void setListcliente(List<Cliente> listcliente) {
         this.listcliente = listcliente;
     }
-    
+
+    public Cliente getClienteSeleccionado() {
+        return clienteSeleccionado;
+    }
+
+    public void setClienteSeleccionado(Cliente clienteSeleccionado) {
+        this.clienteSeleccionado = clienteSeleccionado;
+    }
+
 }
