@@ -66,6 +66,22 @@ public class ClienteView implements Serializable{
         
         clienteControlador.insertarCliente(nuevoCliente);
     }
+     public void eliminarCliente() throws Exception
+    {
+       // para ingresar codID 
+       // nuevoCliente.setCi(Integer.ParseInt.(txtCi));
+       
+        
+        //nuevoCliente= new Cliente();
+        
+     
+                
+        nuevoCliente.setIdCliente(txtid);
+       
+        System.err.println("Ya llego al servidor: "+nuevoCliente);
+        
+        clienteControlador.eliminarCliente(nuevoCliente.getIdCliente());
+    }
     
 //    public void eliminarCliente(){
 //         System.out.println("INGRESE DATOS A ELIMINAR");
