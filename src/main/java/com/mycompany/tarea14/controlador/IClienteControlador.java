@@ -22,7 +22,7 @@ public interface IClienteControlador {
 
 //    public void insertarCliente(Cliente cliente) throws Exception ;
 //
-//    public boolean actualizarCliente(Cliente cliente)throws Exception;
+   public boolean actualizarCliente(Cliente cliente)throws Exception;
 //
     public boolean eliminarCliente(int id) throws Exception;
 //

@@ -60,6 +60,17 @@ public class ClienteControladorImpl implements IClienteControlador {
             return false;
         }
     }
+    
+    @Override
+    public boolean actualizarCliente(Cliente cliente) throws Exception {
+try {
+            IClienteDAO sql = new ClienteDAOImpl(Cliente.class);
+            return sql.actualizarCliente(cliente);
+        } catch (Exception e) {
+            System.err.println("ERROR:" + e);
+            return false;
+        }    }
+    
 }
 
 //     public List<Cliente> listarClienteCQ() {

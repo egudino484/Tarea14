@@ -38,11 +38,15 @@ public class ClienteDAOImpl extends GenericDAO<Cliente> implements IClienteDAO {
 
     @Override
     public Cliente buscarPorId(int id) {
-        this.beginTransaction();
-        Cliente artist1 = this.read(id);
-
-        this.closeTransaction();
-        return artist1;
+        List<Cliente> lista;
+        try {
+            lista = entityManager.createQuery("SELECT c FROM Cliente c where c.idCliente=" + id, Cliente.class).getResultList();
+            return lista.get(0);
+        } catch (Exception e) {
+            //throw e;
+            System.err.println("error:" + e.getMessage());
+            return new Cliente();
+        }
 
     }
 //    public List<Cliente> listarCliente(){
@@ -66,7 +70,17 @@ public class ClienteDAOImpl extends GenericDAO<Cliente> implements IClienteDAO {
 
     @Override
     public boolean actualizarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.beginTransaction();
+        Cliente artist1 = entityManager.find(Cliente.class, cliente.getIdCliente());
+        artist1.setNombre(cliente.getNombre());
+        artist1.setApellido(cliente.getApellido());
+        artist1.setCi(cliente.getCi());
+        artist1.setDireccion(cliente.getDireccion());
+        artist1.setTelefono(cliente.getTelefono());
+        this.update(artist1);
+        this.commit();
+        this.closeTransaction();
+        return true;
     }
 
     @Override

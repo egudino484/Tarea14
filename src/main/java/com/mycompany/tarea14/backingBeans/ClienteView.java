@@ -8,12 +8,16 @@ package com.mycompany.tarea14.backingBeans;
 import com.mycompany.tarea14.controlador.IClienteControlador;
 import com.mycompany.tarea14.controladorImpl.ClienteControladorImpl;
 import com.mycompany.tarea14.modelo.entidades.Cliente;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -31,6 +35,7 @@ public class ClienteView implements Serializable {
     private String txtFono;
     private String txtCi;
     private Cliente nuevoCliente;
+    private Cliente edicionCliente;
     private Cliente clienteSeleccionado;
     private IClienteControlador clienteControlador;
     private List<Cliente> listcliente;
@@ -50,9 +55,9 @@ public class ClienteView implements Serializable {
     }
 
     public void seleccionarCliente(int clienteSeleccion) {
-        System.out.println("id cliente:"+clienteSeleccion);
-        clienteSeleccionado =  clienteControlador.buscarPorId(clienteSeleccion);
-        System.err.println("termino de convertir: "+ clienteSeleccionado);
+        System.out.println("id cliente:" + clienteSeleccion);
+        clienteSeleccionado = clienteControlador.buscarPorId(clienteSeleccion);
+        System.err.println("termino de convertir: " + clienteSeleccionado);
     }
 
     public void insertarCliente() throws Exception {
@@ -69,6 +74,22 @@ public class ClienteView implements Serializable {
         System.err.println("Ya llego al servidor: " + nuevoCliente);
 
         clienteControlador.insertarCliente(nuevoCliente);
+    }
+
+    public void guardarCliente() throws Exception {
+        // para ingresar codID 
+        // nuevoCliente.setCi(Integer.ParseInt.(txtCi));
+
+        //nuevoCliente= new Cliente();
+        /*  clienteSeleccionado.setIdCliente(txtid);
+        clienteSeleccionado.setNombre(txtNombre);
+        clienteSeleccionado.setApellido(txtAapellido);
+        clienteSeleccionado.setDireccion(txtDieccion);
+        clienteSeleccionado.setTelefono(txtFono);
+        clienteSeleccionado.setCi(txtCi);*/
+        System.err.println("Ya llego al servidor: " + clienteSeleccionado);
+
+        clienteControlador.actualizarCliente(clienteSeleccionado);
     }
 
     public void eliminarCliente(int id) throws Exception {
@@ -169,6 +190,11 @@ public class ClienteView implements Serializable {
 
     public void setClienteSeleccionado(Cliente clienteSeleccionado) {
         this.clienteSeleccionado = clienteSeleccionado;
+    }
+
+    public void reload() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
 
 }
