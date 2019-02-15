@@ -1,8 +1,8 @@
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAOImpl\ClienteDAOImpl.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\modelo\entidades\Cliente.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\controlador\IClienteControlador.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAOImpl\GenericDAO.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\controladorImpl\ClienteControladorImpl.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\backingBeans\ClienteView.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAO\IClienteDAO.java
-C:\proyectos\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAO\IGenericDAO.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\backingBeans\ClienteView.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAO\IClienteDAO.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAO\IGenericDAO.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\modelo\entidades\Cliente.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAOImpl\GenericDAO.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\modelo\DAOImpl\ClienteDAOImpl.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\controladorImpl\ClienteControladorImpl.java
+C:\Users\Edison\Desktop\Tarea14\src\main\java\com\mycompany\tarea14\controlador\IClienteControlador.java
