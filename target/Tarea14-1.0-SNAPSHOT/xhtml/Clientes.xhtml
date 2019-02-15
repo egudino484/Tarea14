@@ -32,8 +32,10 @@ and open the template in the editor.
                         <p:outputLabel>Cedula/RUC</p:outputLabel>
                         <p:inputText value="#{clienteView.txtCi}"></p:inputText>
                     </h:panelGrid>
+                    <p:commandButton value="Guardar" action="#{clienteView.insertarCliente()}" ></p:commandButton>
 
                 </p:panel>
+                <p:commandButton value="RECARGAR" onclick="location.reload();" ></p:commandButton>
                 <p:panel header="listar" style="">
 
                     <h:panelGrid>
@@ -65,9 +67,9 @@ and open the template in the editor.
                                 <p:commandButton value="Eliminar" action="#{clienteView.eliminarCliente(dtCliente.idCliente)}" ></p:commandButton>                            
                             </p:column> 
                             <p:column style="width:32px">  
-                                <p:commandButton update=":dlgForm"   action="#{clienteView.seleccionarCliente(dtCliente.idCliente)}"   immediate="true" 
+                                <p:commandButton update=":dlgForm"   action="#{clienteView.seleccionarCliente(dtCliente.idCliente)}" onclick="dlgForm.show()" oncomplete="dlgForm.show()"  immediate="true" 
                                                  image="ui-icon ui-icon-search" >  
-                                <f:setPropertyActionListener value="#{dtCliente}"  
+                                    <f:setPropertyActionListener value="#{dtCliente}"  
                                                                  target="#{clienteView.clienteSeleccionado}" /> 
                                 </p:commandButton>  
                             </p:column>  
@@ -83,14 +85,12 @@ and open the template in the editor.
                 </p:panel>
 
 
-                <p:commandButton value="Guardar" action="#{clienteView.insertarCliente()}" ></p:commandButton>
             </h:form>
             <hr/>
-         <!--   <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"  
-                      width="200" showEffect="explode" hideEffect="explode">  -->
-                <h:form id="dlgForm">
-
-
+            <!--   <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"  
+                         width="200" showEffect="explode" hideEffect="explode">  -->
+            <h:form id="dlgForm">
+                <p:panel header="Actualizar" style="">
                     <h:panelGrid id="display" columns="2" cellpadding="4">  
 
                         <f:facet name="header">  EDITAR                        </f:facet>  
@@ -100,21 +100,28 @@ and open the template in the editor.
 
                         <h:outputText value="Apellido:" />  
                         <h:inputText value="#{clienteView.clienteSeleccionado.apellido}" /> 
-                         <h:outputText value="Direccion:" />  
-                         <h:inputText value="#{clienteView.clienteSeleccionado.direccion}" /> 
-                         <h:outputText value="Telefono:" />  
-                         <h:inputText value="#{clienteView.clienteSeleccionado.telefono}" />  
+                        <h:outputText value="Direccion:" />  
+                        <h:inputText value="#{clienteView.clienteSeleccionado.direccion}" /> 
+                        <h:outputText value="Telefono:" />  
+                        <h:inputText value="#{clienteView.clienteSeleccionado.telefono}" />  
                         <h:outputText value="Cedula:" />  
                         <h:inputText value="#{clienteView.clienteSeleccionado.ci}" /> 
 
                     </h:panelGrid>  
-                     <!--update="tableForm:carTable"--> 
-                     <p:commandButton value="GUARDAR" action="#{clienteView.guardarCliente()}" oncomplete="#{clienteView.reload()}"></p:commandButton>
+
+                </p:panel>
+
+
+                <!--update="tableForm:carTable"--> 
+
+                <p:commandButton value="GUARDAR" action="#{clienteView.guardarCliente()}" ></p:commandButton>
+                                
+
             </h:form>
-        <!--</p:dialog>  -->
-        <hr/>
-      
-       
-    </div>
-</body>
+            <!--</p:dialog>  -->
+            <hr/>
+
+
+        </div>
+    </body>
 </html>
